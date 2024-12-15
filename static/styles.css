@@ -1,0 +1,225 @@
+    
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+
+    /* Tambahkan Flexbox */
+    display: flex;
+    flex-direction: column; /* Tata letak vertikal */
+    align-items: center; /* Pusatkan horizontal */
+
+    height: 100vh; /* Pastikan halaman penuh tinggi */
+}
+
+.container {
+    text-align: center; /* Pusatkan teks */
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+form {
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Lebar tetap */
+    height: 300px; /* Tinggi tetap */
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Tata letak vertikal */
+    justify-content: space-between; /* Pastikan elemen tersebar merata */
+}
+
+/* Pastikan gambar sesuai */
+.card img {
+    max-width: 50px; /* Sesuaikan lebar gambar */
+    height: 100px; /* Tetapkan tinggi tetap */
+    object-fit: cover; /* Potong gambar agar pas */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Pastikan title bisa lebih dari 1 baris */
+.card .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    white-space: normal; /* Izinkan teks membungkus */
+    overflow: hidden; /* Hilangkan overflow */
+    text-overflow: ellipsis; /* Tampilkan tanda "..." jika terlalu panjang */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Maksimal 2 baris */
+    -webkit-box-orient: vertical;
+}
+
+/* Konten lainnya diatur */
+.card .author, .card .year {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+/* Navbar Container */
+.navbar {
+    background-color: #343a40; /* Warna gelap */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+}
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#close-popup {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    background-color: #0056b3;
+}
+.ui-helper-hidden-accessible {
+    display: none;
+}
+/* Brand Name */
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none;
+    background: transparent;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    color: #dcdcdc;
+    margin-right: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Navbar Link Active */
+.navbar-nav .nav-link.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Navbar Link Hover */
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa;
+}
+
+/* Responsive Collapse */
+.navbar-collapse {
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.nav-item {
+    list-style: none;
+}

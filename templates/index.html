@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+</head>
+
+
+<body>
+  
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Book Recommendation</a>
+          
+        </div>
+      </nav>
+    <form id="recommend-form" >
+        <label for="title">Enter Book Title:</label>
+        <input type="text" id="title" name="title" required>
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="results" class="book-grid"></div>
+
+    <script>
+        $(document).ready(function() {
+            
+
+            document.getElementById('recommend-form').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const title = document.getElementById('title').value;
+                const response = await fetch(`/recommend?title=${encodeURIComponent(title)}`);
+                const resultsDiv = document.getElementById('results');
+
+                if (response.ok) {
+    const data = await response.json();
+    const message = data.message || 'Recommendations:';
+    
+    if (data.recommendations && data.recommendations.length > 0) {
+        resultsDiv.innerHTML = data.recommendations.map(r => `
+            <div class="book-card">
+                <img src="${r.image_url}" alt="${r.title}" />
+                <div class="title">${r.title}</div>
+                <div class="author">Author: ${r.author}</div>
+                <div class="year">Year: ${r.year}</div>
+                <div class="publisher">Publisher: ${r.publisher}</div>
+            </div>
+        `).join('');
+    } else {
+        // Fetch random recommendations
+        const randomResponse = await fetch(`/recommend/random`);
+        if (randomResponse.ok) {
+            const randomData = await randomResponse.json();
+            resultsDiv.innerHTML = randomData.recommendations.map(r => `
+                <div class="book-card">
+                    <img src="${r.image_url}" alt="${r.title}" />
+                    <div class="title">${r.title}</div>
+                    <div class="author">Author: ${r.author}</div>
+                    <div class="year">Year: ${r.year}</div>
+                    <div class="publisher">Publisher: ${r.publisher}</div>
+                </div>
+            `).join('');
+        } else {
+            resultsDiv.innerHTML = `<p>Sorry, no recommendations available.</p>`;
+        }
+    }
+} else {
+    const error = await response.json();
+    resultsDiv.innerHTML = `<p>${error.error}</p>`;
+}
+
+            });
+        });
+    </script>
+</body>
+</html>

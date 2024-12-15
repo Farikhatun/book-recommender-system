@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book['Book-Title'] }}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>{{ book['Book-Title'] }}</h1>
+    </header>
+    <main>
+        <div class="book-detail">
+            <img src="{{ book['Image-URL-L'] }}" alt="{{ book['Book-Title'] }}">
+            <div class="book-info">
+                <p><strong>ISBN:</strong> {{ book['ISBN'] }}</p>
+                <p><strong>Author:</strong> {{ book['Book-Author'] }}</p>
+                <p><strong>Year:</strong> {{ book['Year-Of-Publication'] }}</p>
+                <p><strong>Publisher:</strong> {{ book['Publisher'] }}</p>
+            </div>
+        </div>
+        <h2>Recommendations</h2>
+        <div class="book-grid">
+            {% for rec in recommendations %}
+            <div class="book-card">
+                <img src="{{ rec['Image-URL-M'] }}" alt="{{ rec['Book-Title'] }}">
+                <h2>{{ rec['Book-Title'] }}</h2>
+                <p>by {{ rec['Book-Author'] }}</p>
+                <a href="/book/{{ rec['Book-Title'] }}">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
